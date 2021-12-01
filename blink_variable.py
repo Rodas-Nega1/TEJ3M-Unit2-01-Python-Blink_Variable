@@ -9,20 +9,50 @@ import time
 import board
 import digitalio
 
-# variable is set to a value of 1000 milliseconds 
-blink_time = 1.0 
 
-led = digitalio.DigitalInOut(board.LED)
-led.direction = digitalio.Direction.OUTPUT
+# The RGB LED legs are connected to pins 11, 12, and 13 on the Pico
+led_r = digitalio.DigitalInOut(board.GP11)
+led_r.direction = digitalio.Direction.OUTPUT
+
+led_g = digitalio.DigitalInOut(board.GP12)
+led_g.direction = digitalio.Direction.OUTPUT
+
+led_b = digitalio.DigitalInOut(board.GP13)
+led_b.direction = digitalio.Direction.OUTPUT
 
 while True: 
-    led.value = True
-    # while the LED is on, keep it on by the value of the variable
-    time.sleep(blink_time) 
-    led.value = False
-    # while the LED is off, wait for a second
-    time.sleep(1.0)        
-
-    # a sum that adds the variable to itself
-    blink_time = blink_time + 1.0
-    
+    # red 
+    led_r.value = True
+    led_g.value = False
+    led_b.value = False
+    time.sleep(1.0)  
+    # green
+    led_r.value = False
+    led_g.value = True
+    led_b.value = False
+    time.sleep(1.0)
+    # blue
+    led_r.value = False
+    led_g.value = False
+    led_b.value = True    
+    time.sleep(1.0)
+    # green-red
+    led_r.value = True
+    led_g.value = True
+    led_b.value = False
+    time.sleep(1.0)
+    # green-blue
+    led_r.value = False
+    led_g.value = True
+    led_b.value = True
+    time.sleep(1.0)
+    # blue-red
+    led_r.value = True
+    led_g.value = False
+    led_b.value = True
+    time.sleep(1.0)
+    # white
+    led_r.value = True
+    led_g.value = True
+    led_b.value = True
+    time.sleep(1.0)
